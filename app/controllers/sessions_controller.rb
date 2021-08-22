@@ -9,6 +9,8 @@ class SessionsController < ApplicationController
       if user.activated?
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+        user.number_of_logins = user.number_of_logins + 1
+        user.save 
         redirect_back_or user
       else
         message  = "Account not activated. "

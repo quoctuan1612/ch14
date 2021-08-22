@@ -1,3 +1,6 @@
+<div id="notification-first-login">
+</div>
+
 <% provide(:title, @user.name) %>
 <div class="row">
   <aside class="col-md-4">
@@ -22,3 +25,13 @@
     <% end %>
   </div>
 </div>
+
+<div current-user-id=<%= current_user.id %> id="notifications" first-login=<%= @first_login %>  onclick="closenotification()">
+</div>
+
+<script>
+  function closenotification() {
+    let element = document.getElementById("message")
+    element.remove()
+  }
+</script>

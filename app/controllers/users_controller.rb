@@ -10,6 +10,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if @user.first_login == false && @user.number_of_logins == 1
+      @first_login = @user.first_login
+      @user.first_login = true
+      @user.save
+    else
+      @first_login = true
+    end
     @microposts = @user.microposts.paginate(page: params[:page])
   end
 
