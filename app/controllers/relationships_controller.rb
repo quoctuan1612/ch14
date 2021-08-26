@@ -4,7 +4,6 @@ class RelationshipsController < ApplicationController
   def create
     @user = User.find(params[:followed_id])
     current_user.follow(@user)
-    ActionCable.server.broadcast("notifications_channel_#{@user.id}", {user_name_follow: current_user.name})
     respond_to do |format|
       format.html { redirect_to @user }
       format.js
